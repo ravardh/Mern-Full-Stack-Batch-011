@@ -1,0 +1,32 @@
+#Main {
+  width: 1000px;
+  height: 1500px;
+  margin: 20px auto;
+  border: 1px solid #000;
+}
+
+.xyz {
+  display: inline-block;
+  border: 1px solid #000;
+}
+
+#sideBar {
+  width: 30%;
+  height: 100%;
+}
+
+#mainContent {
+  width: 70%;
+  height: 100%;
+}
+
+hr {
+  width: 80%;
+  height: 2px;
+  background-color: #000;
+}
+
+
+span{
+    margin:0 5px 0 0;
+}

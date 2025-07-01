@@ -1,22 +1,82 @@
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#a {
+  border: 5px solid #000;
+  width: 200px;
+  height: 200px;
+  margin: 50px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px 20px red;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: xx-large;
+  font-weight: 900;
+  font-style: italic;
+  color: aqua;
+  text-align: center;
+  text-shadow: 2px 2px 5px green;
+  border-radius: 50%;
+}
+
+#b {
+  width: 200px;
+  height: 200px;
+  border: 1px solid #000;
+  /* background: linear-gradient(75deg, red 20%, blue 50%,green 70%); */
+  background: radial-gradient(red 20%, blue 50%, green 70%);
+}
+
+#c {
+  width: 500px;
+  height: 500px;
+  border: 1px solid #000;
+  margin: 20px auto;
+  padding: 20px;
+  text-align: center;
+  background: url(textbackground.avif);
+  color: rgba(0, 255, 0, 1);
+}
+
+#sbmtbtn {
+  margin: 10px;
+  background-color: blue;
+  color: white;
+  padding: 5px;
+  border: 1px solid #000;
+  border-radius: 5px;
+}
+
+#sbmtbtn:hover {
+  background-color: white;
+  color: blue;
+}
+
+#sbmtbtn:active {
+  background-color: green;
+  color: red;
+}
+
+#d {
+  width: 500px;
+  height: 500px;
+}
+
+#steve {
+  width: 500px;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: none;
 }
 
 
-div{
-    border: 5px solid #000;
-    width: 200px;
-    height: 200px;
-    margin: 50px;
+#s
+{
+    margin: 20px;
     padding: 20px;
-    box-shadow: 0px 0px 10px 20px red;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: xx-large;
-    font-weight: 900;
-    font-style: italic;
-    color: aqua;
-    text-align: center;
-    text-shadow: 2px 2px 5px green;
-    border-radius: 50%;
+    width: 500px;
+    height: 500px;
 }
