@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#a {
+  width: 500px;
+  height: 500px;
+  border: 1px solid #000;
+  background: cyan;
+  position: relative;
+}
+
+.smallBox {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #000;
+  background: rgb(5, 232, 50);
+}
+
+#d {
+  position: absolute;
+  background-color: brown;
+  right: 0;
+  bottom: 0;
+}
+
+button {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+}
+
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #000;
+  background-color: grey;
+  padding: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 99;
+}

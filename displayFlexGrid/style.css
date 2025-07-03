@@ -1,0 +1,48 @@
+#a{
+    width: 500px;
+    height: 500px;
+    border: 1px solid #000;
+    display: flex;
+    justify-content: baseline;
+    gap: 10px;
+    align-items: end;
+}
+
+
+.smallbox{
+    width: 50px;
+    height: 50px;
+    border: 1px solid #000;
+    background: cyan;
+}
+
+
+#g{
+    width: 500px;
+    height: 500px;
+    border: 1px solid #000;
+    display: grid;
+    grid-template-columns: 100px 150px 200px;
+    justify-items: baseline;
+    align-content: space-around;
+}
+
+.smallBox{
+     width: 50px;
+    height: 50px;
+    border: 1px solid #000;
+    background: rgb(7, 215, 91);
+}
+
+ul{
+    list-style: none;
+    display: flex;
+    gap: 10px;
+}
+
+
+#navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

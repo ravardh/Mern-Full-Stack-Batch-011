@@ -3,21 +3,19 @@
   height: 1500px;
   margin: 20px auto;
   border: 1px solid #000;
+  display: flex;
 }
 
 .xyz {
-  display: inline-block;
   border: 1px solid #000;
 }
 
 #sideBar {
-  width: 30%;
-  height: 100%;
+ 
 }
 
 #mainContent {
-  width: 70%;
-  height: 100%;
+  
 }
 
 hr {
