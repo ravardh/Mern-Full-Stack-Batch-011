@@ -1,0 +1,31 @@
+ul {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+}
+
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+#missionDropDown {
+  position: absolute;
+  border: 1px solid white;
+  padding: 0;
+  top: 50px;
+  right: 100px;
+  overflow: hidden;
+  height: 0px;
+}
+
+#mission:hover {
+  #missionDropDown {
+    height: 110%;
+
+    border: 1px solid rgb(0, 0, 0);
+    transition: all 1s;
+  }
+}

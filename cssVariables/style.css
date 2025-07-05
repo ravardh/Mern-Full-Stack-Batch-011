@@ -1,0 +1,40 @@
+:root {
+  --moses: #ff0000;
+  --pratham: #00ff00;
+  --vaidehi: #0000ff;
+
+  --my-font: "Edu NSW ACT Cursive", cursive;
+
+  --my-font-style: normal normal bold 2rem/2 "Cedarville Cursive", cursive;
+}
+
+.a {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #000;
+}
+
+#a1 {
+  background-color: var(--moses);
+}
+
+#a2 {
+  background-color: var(--pratham);
+  font: var(--my-font-style);
+  overflow: hidden;
+}
+
+#a3 {
+  background-color: var(--vaidehi);
+  color: white;
+  font-family: var(--my-font);
+}
+
+
+#appleIcon{
+    color: var(--pratham);
+}
+
+#a4:hover{
+    border-color: #ff0000;
+}

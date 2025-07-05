@@ -1,0 +1,99 @@
+#a {
+  width: 150px;
+  height: 300px;
+  border: 1px solid #000;
+  overflow: hidden;
+  margin: auto;
+  position: relative;
+}
+
+#a1 {
+  width: 150px;
+  height: 300px;
+  border: 1px solid red;
+  background-color: red;
+  position: absolute;
+  top: 250px;
+  transition: top 1s;
+}
+
+#a1:hover {
+  top: 100px;
+  transition: all 1s linear 2s;
+}
+
+#b {
+  width: 150px;
+  height: 150px;
+  border: 1px solid #000;
+  overflow: hidden;
+}
+
+#b img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+#b img:hover {
+  transform: scale(1.1);
+  transition: transform 0.5s ;
+}
+
+#c {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+#c img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+#c:hover {
+  transform: translateX(1000px) rotateZ(5000deg) scale(2);
+  transition: transform 10s;
+}
+
+@keyframes Aman {
+  0% {
+    color: red;
+    left: 0px;
+    top: 0px;
+  }
+  25% {
+    color: blue;
+    left: 300px;
+    top: 0px;
+  }
+  50% {
+    color: green;
+    left: 300px;
+    top: 200px;
+  }
+  75% {
+    color: yellow;
+    left: 0px;
+    top: 200px;
+  }
+  100% {
+    color: red;
+    left: 0px;
+    top: 0px;
+  }
+}
+
+#d {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bolder;
+  position: relative;
+  animation: Aman 5s linear infinite;
+}
