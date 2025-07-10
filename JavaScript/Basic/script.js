@@ -46,3 +46,16 @@ var x = 5;
 var y = "5";
 
 console.log((x !== y));
+
+
+
+
+let variable1 = 10;
+
+function demo(){
+  let variable1 = 20;
+  console.log("Variable",variable1);
+}
+
+
+demo()

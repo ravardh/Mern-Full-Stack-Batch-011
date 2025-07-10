@@ -1,0 +1,37 @@
+* {
+  background-color: aqua;
+}
+
+#abcd {
+  background-color: red;
+  width: 100px;
+  height: 100px;
+  border: 1px solid #000;
+}
+
+#gola {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #000;
+  border-radius: 50%;
+}
+
+.jalgya {
+  background-color: yellow;
+}
+
+.bhujgya {
+  background-color: aqua;
+}
+
+#dusraGola,
+#tisraGola {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #000;
+  border-radius: 50%;
+}
+
+.kuchbhi {
+  background-color: red;
+}
