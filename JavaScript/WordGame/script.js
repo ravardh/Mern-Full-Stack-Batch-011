@@ -351,10 +351,11 @@ const Words = [
   "size",
 ];
 
-let maxtime = 30;
+let maxtime = 1200;
 let countdown = maxtime;
 let randomWord;
 let score = 0;
+
 const timerElement = document.getElementById("timer");
 timerElement.innerText = maxtime;
 
@@ -438,3 +439,6 @@ function Submit() {
     document.getElementById("message").style.color = "red";
   }
 }
+
+
+
