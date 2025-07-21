@@ -1,5 +1,21 @@
-#myform{
-    display: grid;
-    grid-template-columns: 100px 300px;
-    gap: 15px;
+#myform {
+  display: grid;
+  grid-template-columns: 100px 300px;
+  gap: 15px;
+}
+
+main {
+  height: 90vh;
+}
+
+.col-4,
+.col-5,
+.col-3 {
+  border: 1px solid #000;
+  padding: 8px;
+}
+
+
+#studentdata{
+    overflow: scroll;
 }
