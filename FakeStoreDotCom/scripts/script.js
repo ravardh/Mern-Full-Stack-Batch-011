@@ -1,0 +1,1 @@
+ document.getElementById("homeLink").click();
