@@ -1,0 +1,5 @@
+.manualGrid{
+    display: grid;
+    grid-template-columns: 45% 55%;
+    gap: 10px;
+}

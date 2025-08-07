@@ -28,7 +28,11 @@ async function getProducts() {
             </div>
           </div>
           <div class="col-9 border border-success p-4 d-flex flex-column gap-2">
-            <h2>${element.title.length >50 ? element.title.slice(0,50) + " ..." : element.title}</h2>
+            <a href="./productDetails.html" class="productLink text-decoration-none fs-2" >${
+              element.title.length > 50
+                ? element.title.slice(0, 50) + " ..."
+                : element.title
+            }</a>
             <span class="fs-6"><b>Category:</b> ${element.category}</span>
             <span class="">
               <b>Rating:</b> ${element.rating.rate}/5 (${
@@ -48,8 +52,19 @@ async function getProducts() {
           </div>
     `;
 
+    const link = productRow.querySelector(".productLink");
+
+    link.addEventListener("click", (e) => {
+      //e.preventDefault();
+      selectData(element);
+    });
+
     products.appendChild(productRow);
   });
 }
 
 getProducts();
+
+function selectData(product) {
+  sessionStorage.setItem("CurrentProduct", JSON.stringify(product));
+}
