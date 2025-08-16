@@ -4,7 +4,7 @@ import React from 'react'
 function Certifications(){
     return (
         <>
-        <div>Certifications Page</div>
+        <div id='certifications'>Certifications Page</div>
         </>
     )
 }

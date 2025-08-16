@@ -3,8 +3,8 @@ import React from "react";
 function About() {
   return (
     <>
-      <div>
-        <h1 id="about">About</h1>
+      <div id="about">
+        <h1 id="about_heading">About</h1>
         <hr />
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores

@@ -4,7 +4,7 @@ import React from 'react'
 function ContactMe(){
     return (
         <>
-        <div>ContactMe Page</div>
+        <div id='contact'>ContactMe Page</div>
         </>
     )
 }

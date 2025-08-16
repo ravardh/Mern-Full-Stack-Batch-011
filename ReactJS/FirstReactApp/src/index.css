@@ -1,4 +1,4 @@
-#about {
+#about_heading {
   color: blue;
 }
 
@@ -9,4 +9,9 @@
   border-radius: 50%;
   border: 1px solid #000;
   object-position: top;
+}
+
+
+div{
+  height: 300px;
 }

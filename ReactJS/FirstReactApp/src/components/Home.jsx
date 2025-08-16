@@ -5,7 +5,7 @@ import resume from "../assets/Resume.pdf";
 function Home() {
   return (
     <>
-      <div className="container my-3 d-flex justify-content-between">
+      <div className="container my-3 d-flex justify-content-between" id='home'>
         <div className="d-flex align-items-center gap-4">
           <img src={raj} alt="" id="image" />
           <div>
