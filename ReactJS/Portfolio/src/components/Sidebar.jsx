@@ -12,6 +12,8 @@ const Sidebar = () => {
           </Link>
           <Link to={"/about"}>About</Link>
           <Link to={"/project"}>Project</Link>
+          <Link to={"/education"}>Education</Link>
+          <Link to={"/contact"}>Contact</Link>
         </div>
       </div>
     </>
