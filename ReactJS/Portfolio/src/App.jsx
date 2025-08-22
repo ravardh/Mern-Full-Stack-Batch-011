@@ -8,6 +8,7 @@ import Contact from "./pages/Contact";
 import Education from "./pages/Education";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./pages/Login";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
               <Route path="/project" element={<Project />} />
               <Route path="/education" element={<Education />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/login" element={<Login />} />
             </Routes>
           </section>
         </main>
