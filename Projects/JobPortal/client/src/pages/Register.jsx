@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const [registerData, setRegisterData] = useState({
@@ -25,8 +26,25 @@ const Register = () => {
       isvalid = false;
     }
 
-    if (registerData.email.length < 10) {
-      err.email = "Email should be of Atlest 3 Characters";
+    if (!/^[A-Za-z ]+$/.test(registerData.fullName)) {
+      err.fullName = "Only Alphabets are allowed";
+      isvalid = false;
+    }
+
+    if (
+      !/^[A-Za-z\d._]+@gmail.com$/.test(registerData.email) ||
+      registerData.email.length < 10
+    ) {
+      err.email = "Please enter a Valid Email";
+      isvalid = false;
+    }
+
+    if (
+      !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/.test(
+        registerData.password
+      )
+    ) {
+      err.password = "Please choose a Strong Password";
       isvalid = false;
     }
 
@@ -46,6 +64,7 @@ const Register = () => {
 
     if (!Validate()) {
       setLoading(false); // reset loading if validation fails
+      toast.error("Please Solve the Errors");
       return;
     }
 
@@ -58,6 +77,7 @@ const Register = () => {
         confirmPassword: "",
       });
       setLoading(false);
+      toast.success("Registration Sucessfull");
     }, 2000); // 2 seconds
   };
 

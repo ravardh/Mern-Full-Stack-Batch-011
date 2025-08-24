@@ -17,10 +17,15 @@
   </head>
   <body>
     <div class="container-fluid bg-primary py-1">
-        <h3 class="text-center text-white"> <i class="bi bi-ubuntu text-danger"></i> Login/Register</h3>
+      <h3 class="text-center text-white">
+        <i class="bi bi-ubuntu text-danger"></i> Login/Register
+      </h3>
     </div>
-<br>
-    <input type="text" placeholder="input" class="form-control w-50">
+    <br />
+    <div class="container d-flex justify-content-center gap-5">
+      <input type="text" placeholder="input" class="form-control w-50"  id="ipData"/>
+      <button class="btn btn-primary" onclick="handleSubmit()">submit</button>
+    </div>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
