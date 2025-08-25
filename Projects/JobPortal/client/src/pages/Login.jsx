@@ -1,4 +1,6 @@
+
 import React, { useState } from "react";
+import working from '../assets/working.jpg'
 
 const Login = () => {
   const [loginData, setLoginData] = useState({
@@ -7,15 +9,12 @@ const Login = () => {
   });
 
   const handleChange = (e) => {
-    // const Name = e.target.name;
-    // const Value = e.target.value;
     const { name, value } = e.target;
     setLoginData((previousData) => ({ ...previousData, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     console.log(loginData);
     setLoginData({
       email: "",
@@ -24,49 +23,54 @@ const Login = () => {
   };
 
   return (
-    <>
-      <div className="bg-gray-200 min-h-screen flex items-center justify-center">
-        <div className="min-w-md border rounded shadow bg-white py-10 px-4 space-y-10">
-          <h1 className="text-center text-xl">Login to JobPortal</h1>
-          <form className="space-y-6" onSubmit={handleSubmit}>
+    <section className="min-h-[80vh] bg-gradient-to-br from-blue-50 to-blue-100 flex flex-col items-center py-10 px-2">
+      <div className="w-full max-w-3xl bg-white rounded-2xl shadow-xl p-8 flex flex-col md:flex-row gap-8 items-center">
+        {/* Image placeholder for future use */}
+        <div className="w-1/2">
+          
+          <img src={working} alt="Login" className="w-full h-full object-cover rounded-xl shadow-md border-4 border-blue-100 hidden md:block" />
+        </div>
+        <div className="flex-1 w-full">
+           <h1 className="font-bold italic text-3xl mb-5 text-blue-700">
+              Login to JobPortal
+            </h1>
+          <form className="flex flex-col gap-5 bg-blue-50 p-6 rounded-xl shadow-inner" onSubmit={handleSubmit}>
             <div>
-              <label htmlFor="email" className="w-1/4 inline-block">
-                Email:
-              </label>
+              <label className="block text-gray-700 font-semibold mb-1" htmlFor="email">Email</label>
               <input
                 type="email"
                 name="email"
                 id="email"
                 value={loginData.email}
                 onChange={handleChange}
-                className=" w-3/4 border p-2 rounded focus:ring-2  focus:ring-blue-500 focus:outline-none"
                 placeholder="you@example.com"
+                className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                required
               />
             </div>
             <div>
-              <label htmlFor="password" className="w-1/4 inline-block">
-                Password:
-              </label>
+              <label className="block text-gray-700 font-semibold mb-1" htmlFor="password">Password</label>
               <input
                 type="password"
                 name="password"
                 id="password"
                 value={loginData.password}
                 onChange={handleChange}
-                className=" w-3/4 border p-2 rounded focus:ring-2  focus:ring-blue-500 focus:outline-none focus:border-none"
                 placeholder="*********"
+                className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                required
               />
             </div>
             <button
               type="submit"
-              className="w-full border rounded-lg shadow p-2  hover:bg-blue-600 text-blue-500 hover:text-white"
+              className="bg-blue-600 text-white py-2 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow"
             >
               Login
             </button>
           </form>
         </div>
       </div>
-    </>
+    </section>
   );
 };
 

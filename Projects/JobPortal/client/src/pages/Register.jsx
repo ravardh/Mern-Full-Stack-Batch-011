@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
+import starting from "../assets/starting.jpg";
 
 const Register = () => {
   const [registerData, setRegisterData] = useState({
@@ -8,7 +9,6 @@ const Register = () => {
     password: "",
     confirmPassword: "",
   });
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -20,17 +20,14 @@ const Register = () => {
   const Validate = () => {
     let isvalid = true;
     const err = {};
-
     if (registerData.fullName.length < 3) {
       err.fullName = "Name should be of Atlest 3 Characters";
       isvalid = false;
     }
-
     if (!/^[A-Za-z ]+$/.test(registerData.fullName)) {
       err.fullName = "Only Alphabets are allowed";
       isvalid = false;
     }
-
     if (
       !/^[A-Za-z\d._]+@gmail.com$/.test(registerData.email) ||
       registerData.email.length < 10
@@ -38,7 +35,6 @@ const Register = () => {
       err.email = "Please enter a Valid Email";
       isvalid = false;
     }
-
     if (
       !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/.test(
         registerData.password
@@ -47,27 +43,23 @@ const Register = () => {
       err.password = "Please choose a Strong Password";
       isvalid = false;
     }
-
     if (registerData.password !== registerData.confirmPassword) {
       err.confirmPassword = "Password Not Match";
       isvalid = false;
     }
-
     setError(err);
-
     return isvalid;
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
     setError("");
-
     if (!Validate()) {
-      setLoading(false); // reset loading if validation fails
+      setLoading(false);
       toast.error("Please Solve the Errors");
       return;
     }
-
     setTimeout(() => {
       console.log(registerData);
       setRegisterData({
@@ -78,109 +70,125 @@ const Register = () => {
       });
       setLoading(false);
       toast.success("Registration Sucessfull");
-    }, 2000); // 2 seconds
+    }, 2000);
   };
 
   return (
-    <>
-      <div className="bg-gray-200 min-h-screen flex items-center justify-center">
-        <div className="min-w-md border rounded shadow bg-white py-10 px-4 space-y-10">
-          <h1 className="text-center text-xl">Register to JobPortal</h1>
-          <form className="space-y-6" onSubmit={handleSubmit}>
+    <section className="min-h-[80vh] bg-gradient-to-br from-blue-50 to-blue-100 flex flex-col items-center py-10 px-2">
+      <div className="w-full max-w-3xl bg-white rounded-2xl shadow-xl p-8 flex flex-col md:flex-row gap-8 items-center">
+        {/* Image placeholder for future use */}
+        <div className="w-1/2">
+          <img
+            src={starting}
+            alt="Register"
+            className="w-full h-full object-cover rounded-xl"
+          />
+        </div>
+        <div className="flex-1 w-full">
+          <h1 className="font-bold italic text-3xl mb-5 text-blue-700">
+            Register to JobPortal
+          </h1>
+          <form
+            className="flex flex-col gap-5 bg-blue-50 p-6 rounded-xl shadow-inner"
+            onSubmit={handleSubmit}
+          >
             <div>
-              <div>
-                <label htmlFor="fullName" className="w-1/4 inline-block">
-                  Full Name:
-                </label>
-                <input
-                  type="fullName"
-                  name="fullName"
-                  id="fullName"
-                  value={registerData.fullName}
-                  onChange={handleChange}
-                  className=" w-3/4 border p-2 rounded focus:ring-2  focus:ring-blue-500 focus:outline-none"
-                  placeholder="Jhon doe"
-                />
-              </div>
+              <label
+                className="block text-gray-700 font-semibold mb-1"
+                htmlFor="fullName"
+              >
+                Full Name
+              </label>
+              <input
+                type="text"
+                name="fullName"
+                id="fullName"
+                value={registerData.fullName}
+                onChange={handleChange}
+                placeholder="John Doe"
+                className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                required
+              />
               {error.fullName && (
-                <p className="text-center text-red-500 text-sm">
-                  {error.fullName}
-                </p>
+                <p className="text-red-500 text-sm mt-1">{error.fullName}</p>
               )}
             </div>
             <div>
-              <div>
-                <label htmlFor="email" className="w-1/4 inline-block">
-                  Email:
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  value={registerData.email}
-                  onChange={handleChange}
-                  className=" w-3/4 border p-2 rounded focus:ring-2  focus:ring-blue-500 focus:outline-none"
-                  placeholder="you@example.com"
-                />
-              </div>
+              <label
+                className="block text-gray-700 font-semibold mb-1"
+                htmlFor="email"
+              >
+                Email
+              </label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                value={registerData.email}
+                onChange={handleChange}
+                placeholder="you@email.com"
+                className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                required
+              />
               {error.email && (
-                <p className="text-center text-red-500 text-sm">
-                  {error.email}
-                </p>
+                <p className="text-red-500 text-sm mt-1">{error.email}</p>
               )}
             </div>
             <div>
-              <div>
-                <label htmlFor="password" className="w-1/4 inline-block">
-                  Password:
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  value={registerData.password}
-                  onChange={handleChange}
-                  className=" w-3/4 border p-2 rounded focus:ring-2  focus:ring-blue-500 focus:outline-none focus:border-none"
-                  placeholder="*********"
-                />
-              </div>
+              <label
+                className="block text-gray-700 font-semibold mb-1"
+                htmlFor="password"
+              >
+                Password
+              </label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                value={registerData.password}
+                onChange={handleChange}
+                placeholder="*********"
+                className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                required
+              />
               {error.password && (
-                <p className="text-center text-red-500 text-sm">
-                  {error.password}
-                </p>
+                <p className="text-red-500 text-sm mt-1">{error.password}</p>
               )}
             </div>
             <div>
-              <div>
-                <label htmlFor="confirmPassword" className="w-1/4 inline-block">
-                  Confirm Password:
-                </label>
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  id="confirmPassword"
-                  value={registerData.confirmPassword}
-                  onChange={handleChange}
-                  className=" w-3/4 border p-2 rounded focus:ring-2  focus:ring-blue-500 focus:outline-none focus:border-none"
-                  placeholder="*********"
-                />
-              </div>
+              <label
+                className="block text-gray-700 font-semibold mb-1"
+                htmlFor="confirmPassword"
+              >
+                Confirm Password
+              </label>
+              <input
+                type="password"
+                name="confirmPassword"
+                id="confirmPassword"
+                value={registerData.confirmPassword}
+                onChange={handleChange}
+                placeholder="*********"
+                className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                required
+              />
               {error.confirmPassword && (
-                <p className="text-center text-red-500 text-sm">
+                <p className="text-red-500 text-sm mt-1">
                   {error.confirmPassword}
                 </p>
               )}
             </div>
             <button
               type="submit"
-              className="w-full border rounded-lg shadow p-2  hover:bg-blue-600 text-blue-500 hover:text-white"
+              className="bg-blue-600 text-white py-2 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow"
+              disabled={loading}
             >
-              {loading ? "Registering Data..." : "Register"}
+              {loading ? "Registering..." : "Register"}
             </button>
           </form>
         </div>
       </div>
-    </>
+    </section>
   );
 };
 
