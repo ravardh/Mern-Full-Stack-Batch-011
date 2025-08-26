@@ -23,12 +23,12 @@ const Login = () => {
   };
 
   return (
-    <section className="min-h-[80vh] bg-gradient-to-br from-blue-50 to-blue-100 flex flex-col items-center py-10 px-2">
+    <section className="min-h-[91vh] bg-gradient-to-br from-blue-50 to-blue-100 flex flex-col items-center justify-center py-10 px-2">
       <div className="w-full max-w-3xl bg-white rounded-2xl shadow-xl p-8 flex flex-col md:flex-row gap-8 items-center">
         {/* Image placeholder for future use */}
         <div className="w-1/2">
           
-          <img src={working} alt="Login" className="w-full h-full object-cover rounded-xl shadow-md border-4 border-blue-100 hidden md:block" />
+          <img src={working} alt="Login" className="w-full h-full object-cover rounded-xl" />
         </div>
         <div className="flex-1 w-full">
            <h1 className="font-bold italic text-3xl mb-5 text-blue-700">

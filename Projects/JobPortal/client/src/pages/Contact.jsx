@@ -35,15 +35,15 @@ const Contact = () => {
   return (
     <div className="min-h-[91vh] bg-gradient-to-br from-blue-50 to-blue-100 flex justify-center items-center py-10 px-2">
       <div className="w-full max-w-5xl bg-white rounded-2xl shadow-xl p-8 ">
-        <div className="flex gap-8 items-center">
-          <div className="w-1/2">
+        <div className="grid md:flex gap-8 items-center ">
+          <div className="w-full md:w-1/2">
             <img
               src={thinking}
               alt="Person thinking"
               className="w-full h-full object-cover rounded-xl "
             />
           </div>
-          <div className="w-1/2">
+          <div className="w-full md:w-1/2">
             <h1 className="font-bold italic text-3xl mb-5 text-blue-700">
               Get in Touch with us
             </h1>

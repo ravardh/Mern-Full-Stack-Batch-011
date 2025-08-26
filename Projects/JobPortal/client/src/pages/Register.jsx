@@ -74,7 +74,7 @@ const Register = () => {
   };
 
   return (
-    <section className="min-h-[80vh] bg-gradient-to-br from-blue-50 to-blue-100 flex flex-col items-center py-10 px-2">
+    <section className="min-h-[91vh] bg-gradient-to-br from-blue-50 to-blue-100 flex flex-col items-center py-10 px-2">
       <div className="w-full max-w-3xl bg-white rounded-2xl shadow-xl p-8 flex flex-col md:flex-row gap-8 items-center">
         {/* Image placeholder for future use */}
         <div className="w-1/2">
