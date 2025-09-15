@@ -11,7 +11,6 @@ const Navbar = () => {
     // } else {
     //   setIsMenuOpen(false);
     // }
-
     // isMenuOpen === false ? setIsMenuOpen(true) : setIsMenuOpen(false);
 
     setIsMenuOpen(!isMenuOpen);
