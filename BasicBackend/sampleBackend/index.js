@@ -8,7 +8,6 @@ import AuthRouter from "./src/routes/authRouter.js";
 import UserRouter from "./src/routes/userRouter.js";
 import connectDB from "./src/config/db.js";
 
-
 const app = express();
 
 app.use(cors());
@@ -20,6 +19,12 @@ app.use("/user", UserRouter);
 
 app.get("/", (req, res) => {
   res.status(200).json({ message: "Serever Connected" });
+});
+
+app.use((err, req, res, next) => {
+  const ErrorMessage = err.message || "Internal Server Error";
+  const ErrorCode = err.statusCode || 500;
+  res.status(ErrorCode).json({ message: ErrorMessage });
 });
 
 // let Port;
