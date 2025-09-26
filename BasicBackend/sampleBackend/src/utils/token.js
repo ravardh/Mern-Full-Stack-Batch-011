@@ -6,11 +6,11 @@ export const genAuthToken = async (user, res) => {
       expiresIn: "1d",
     });
 
-    res.cookie("hide&seek", token, {
-      maxAge: 1000 * 60 * 60 * 24,
-      httpOnly: true,
-      secure: false,
-      sameSite: "lax",
+    res.cookie("HideAndSeek", token, {
+      maxAge: 1000 * 60 * 60 * 24, // 1 day (in ms)
+      httpOnly: true, // Can't be accessed via JS (prevents XSS stealing)
+      sameSite: "lax", // Limits cross-site sending (good for CSRF protection)
+      secure: false, // Cookie can be sent over HTTP as well (not HTTPS only)
     });
   } catch (error) {
     console.log("Error is cookie Creation", error);

@@ -34,13 +34,14 @@ export const Register = async (req, res, next) => {
 export const Login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-
+    //check the user input
     if (!email || !password) {
-      const error = new Error("All Feilds Required");
+      const error = new Error("All Fields Required");
       error.statusCode = 400;
       return next(error);
     }
 
+    //check user existence in db
     const existingUser = await User.findOne({ email });
     if (!existingUser) {
       const error = new Error("User Not Registered");
@@ -48,6 +49,7 @@ export const Login = async (req, res, next) => {
       return next(error);
     }
 
+    //check password with existing user
     const isVerified = await bcrypt.compare(password, existingUser.password);
     if (!isVerified) {
       const error = new Error("Invalid Password");
@@ -55,18 +57,27 @@ export const Login = async (req, res, next) => {
       return next(error);
     }
 
+    //generate token and send cookie
     await genAuthToken(existingUser, res);
 
-    res.status(200).json({ message: "User Login Successfull" });
+    //i need token here
+    //send success response
+
+    res.status(200).json({ message: "User Login Successful" });
   } catch (error) {
     next(error);
   }
 };
 
 export const Logout = (req, res) => {
-  res.status(200).json({ message: "User Logout Successfull" });
+  try {
+    res.clearCookie("HideAndSeek",{maxAge:0})
+    res.status(200).json({ message: "User Logout Successful" });
+  } catch (error) {
+    next(error)
+  }
 };
 
 export const ForgetPassword = (req, res) => {
-  res.status(200).json({ message: "Password Change Successfull" });
+  res.status(200).json({ message: "Password Change Successful" });
 };
