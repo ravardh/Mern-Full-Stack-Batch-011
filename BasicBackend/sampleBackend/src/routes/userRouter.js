@@ -6,8 +6,8 @@ const router = express.Router();
 
 router.put("/update", LoginCheck, Update);
 
-router.patch("/changepass", ChangePass);
+router.patch("/changepass", LoginCheck, ChangePass);
 
-router.delete("/delete", Delete);
+router.delete("/delete", LoginCheck, Delete);
 
 export default router;
