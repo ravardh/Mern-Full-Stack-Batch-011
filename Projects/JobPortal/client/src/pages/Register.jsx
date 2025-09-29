@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import starting from "../assets/starting.jpg";
+import api from "../config/api";
 
 const Register = () => {
   const [registerData, setRegisterData] = useState({
     fullName: "",
     email: "",
+    phone: "",
     password: "",
     confirmPassword: "",
   });
@@ -26,6 +28,13 @@ const Register = () => {
     }
     if (!/^[A-Za-z ]+$/.test(registerData.fullName)) {
       err.fullName = "Only Alphabets are allowed";
+      isvalid = false;
+    }
+    if (
+      !/^[6-9]\d{9}$/.test(registerData.phone) ||
+      registerData.phone.length !== 10
+    ) {
+      err.phone = "Please enter a valid Phone Number";
       isvalid = false;
     }
     if (
@@ -51,7 +60,7 @@ const Register = () => {
     return isvalid;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError("");
@@ -60,24 +69,44 @@ const Register = () => {
       toast.error("Please Solve the Errors");
       return;
     }
-    setTimeout(() => {
-      console.log(registerData);
+    // setTimeout(() => {
+    //   console.log(registerData);
+    //   setRegisterData({
+    //     fullName: "",
+    //     email: "",
+    //     phone: "",
+    //     password: "",
+    //     confirmPassword: "",
+    //   });
+    //   setLoading(false);
+    //   toast.success("Registration Sucessfull");
+    // }, 2000);
+
+    try {
+      const res = await api.post("/auth/register", registerData);
+      toast.success(res.data.message);
       setRegisterData({
         fullName: "",
         email: "",
+        phone: "",
         password: "",
         confirmPassword: "",
       });
+    } catch (error) {
+      console.log(error);
+      toast.error(
+        `Error : ${error.response?.status} | ${error.response?.data?.message}`
+      );
+    } finally {
       setLoading(false);
-      toast.success("Registration Sucessfull");
-    }, 2000);
+    }
   };
 
   return (
     <section className="min-h-[91vh] bg-gradient-to-br from-blue-50 to-blue-100 flex flex-col items-center py-10 px-2">
-      <div className="w-full max-w-3xl bg-white rounded-2xl shadow-xl p-8 flex flex-col md:flex-row gap-8 items-center">
+      <div className="w-full max-w-6xl bg-white rounded-2xl shadow-xl p-8 flex flex-col md:flex-row gap-8 items-center">
         {/* Image placeholder for future use */}
-        <div className="w-1/2">
+        <div className="w-1/3">
           <img
             src={starting}
             alt="Register"
@@ -92,7 +121,7 @@ const Register = () => {
             className="flex flex-col gap-5 bg-blue-50 p-6 rounded-xl shadow-inner"
             onSubmit={handleSubmit}
           >
-            <div>
+            <div className="flex">
               <label
                 className="block text-gray-700 font-semibold mb-1"
                 htmlFor="fullName"
@@ -113,7 +142,7 @@ const Register = () => {
                 <p className="text-red-500 text-sm mt-1">{error.fullName}</p>
               )}
             </div>
-            <div>
+            <div className="flex">
               <label
                 className="block text-gray-700 font-semibold mb-1"
                 htmlFor="email"
@@ -134,7 +163,28 @@ const Register = () => {
                 <p className="text-red-500 text-sm mt-1">{error.email}</p>
               )}
             </div>
-            <div>
+            <div className="flex">
+              <label
+                className="block text-gray-700 font-semibold mb-1"
+                htmlFor="phone"
+              >
+                Phone
+              </label>
+              <input
+                type="tel"
+                name="phone"
+                id="phone"
+                value={registerData.phone}
+                onChange={handleChange}
+                placeholder="9876543210"
+                className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                required
+              />
+              {error.phone && (
+                <p className="text-red-500 text-sm mt-1">{error.phone}</p>
+              )}
+            </div>
+            <div className="flex">
               <label
                 className="block text-gray-700 font-semibold mb-1"
                 htmlFor="password"
@@ -155,7 +205,7 @@ const Register = () => {
                 <p className="text-red-500 text-sm mt-1">{error.password}</p>
               )}
             </div>
-            <div>
+            <div className="flex">
               <label
                 className="block text-gray-700 font-semibold mb-1"
                 htmlFor="confirmPassword"
