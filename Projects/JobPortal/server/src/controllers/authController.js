@@ -1,5 +1,6 @@
 import User from "../models/userModel.js";
 import bcrypt from "bcrypt";
+import { genAuthToken } from "../utils/token.js";
 
 export const Register = async (req, res, next) => {
   try {
@@ -42,7 +43,39 @@ export const Register = async (req, res, next) => {
 
 export const Login = async (req, res, next) => {
   try {
-    res.status(200).json({ message: "Login Successfull" });
+    const { email, password } = req.body;
+    if (!email || !password) {
+      const error = new Error("All Fields Required");
+      error.statusCode = 400;
+      return next(error);
+    }
+
+    const existingUser = await User.findOne({ email });
+    if (!existingUser) {
+      const error = new Error("User not Registred");
+      error.statusCode = 401;
+      return next(error);
+    }
+
+    const isVerified = await bcrypt.compare(password, existingUser.password);
+    if (!isVerified) {
+      const error = new Error("Invalid Password");
+      error.statusCode = 401;
+      return next(error);
+    }
+
+    if (!genAuthToken(existingUser, res)) {
+      const error = new Error("Login Error");
+      error.statusCode = 403;
+      return next(error);
+    }
+
+    res
+      .status(200)
+      .json({
+        message: `Welcome Back ${existingUser.fullName}`,
+        data: existingUser,
+      });
   } catch (error) {
     next(error);
   }

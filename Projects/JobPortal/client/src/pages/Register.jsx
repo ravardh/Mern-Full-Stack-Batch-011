@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import starting from "../assets/starting.jpg";
 import api from "../config/api";
 
 const Register = () => {
+  const navigate = useNavigate();
   const [registerData, setRegisterData] = useState({
     fullName: "",
     email: "",
@@ -92,6 +94,7 @@ const Register = () => {
         password: "",
         confirmPassword: "",
       });
+      navigate("/login");
     } catch (error) {
       console.log(error);
       toast.error(

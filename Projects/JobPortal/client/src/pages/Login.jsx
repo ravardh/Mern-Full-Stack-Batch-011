@@ -1,25 +1,45 @@
-
 import React, { useState } from "react";
-import working from '../assets/working.jpg'
+import working from "../assets/working.jpg";
+import api from "../config/api";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
+
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setLoginData((previousData) => ({ ...previousData, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     console.log(loginData);
-    setLoginData({
-      email: "",
-      password: "",
-    });
+
+    try {
+      const res = await api.post("/auth/login", loginData);
+      toast.success(res.data.message);
+      sessionStorage.setItem("userData", JSON.stringify(res.data.data));
+      setLoginData({
+        email: "",
+        password: "",
+      });
+      navigate("/dashboard");
+    } catch (error) {
+      console.log(error);
+      toast.error(
+        `Error : ${error.response?.status} | ${error.response?.data?.message}`
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -27,16 +47,27 @@ const Login = () => {
       <div className="w-full max-w-3xl bg-white rounded-2xl shadow-xl p-8 flex flex-col md:flex-row gap-8 items-center">
         {/* Image placeholder for future use */}
         <div className="w-1/2">
-          
-          <img src={working} alt="Login" className="w-full h-full object-cover rounded-xl" />
+          <img
+            src={working}
+            alt="Login"
+            className="w-full h-full object-cover rounded-xl"
+          />
         </div>
         <div className="flex-1 w-full">
-           <h1 className="font-bold italic text-3xl mb-5 text-blue-700">
-              Login to JobPortal
-            </h1>
-          <form className="flex flex-col gap-5 bg-blue-50 p-6 rounded-xl shadow-inner" onSubmit={handleSubmit}>
+          <h1 className="font-bold italic text-3xl mb-5 text-blue-700">
+            Login to JobPortal
+          </h1>
+          <form
+            className="flex flex-col gap-5 bg-blue-50 p-6 rounded-xl shadow-inner"
+            onSubmit={handleSubmit}
+          >
             <div>
-              <label className="block text-gray-700 font-semibold mb-1" htmlFor="email">Email</label>
+              <label
+                className="block text-gray-700 font-semibold mb-1"
+                htmlFor="email"
+              >
+                Email
+              </label>
               <input
                 type="email"
                 name="email"
@@ -49,7 +80,12 @@ const Login = () => {
               />
             </div>
             <div>
-              <label className="block text-gray-700 font-semibold mb-1" htmlFor="password">Password</label>
+              <label
+                className="block text-gray-700 font-semibold mb-1"
+                htmlFor="password"
+              >
+                Password
+              </label>
               <input
                 type="password"
                 name="password"
