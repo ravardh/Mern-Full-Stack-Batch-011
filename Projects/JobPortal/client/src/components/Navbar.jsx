@@ -18,7 +18,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="bg-blue-500 p-3 flex justify-between text-white relative">
+      <div className="bg-blue-500 p-3 flex justify-between text-white sticky top-0 z-100">
         <h1 className="text-2xl font-bold">Job Portal</h1>
         <div className="space-x-5 hidden md:block">
           <Link to={"/about"} className="hover:text-amber-300 hover:border-b-2">
@@ -54,7 +54,7 @@ const Navbar = () => {
         </button>
       </div>
       {isMenuOpen && (
-        <div className="h-85 w-full bg-blue-500 flex flex-col p-3 gap-3 absolute top-18 ">
+        <div className="h-85 w-full bg-blue-500 flex flex-col p-3 gap-3 absolute top-18 z-10">
           <Link
             to={"/about"}
             className="p-3 border rounded bg-blue-400 font-bold text-lg text-white text-center"
