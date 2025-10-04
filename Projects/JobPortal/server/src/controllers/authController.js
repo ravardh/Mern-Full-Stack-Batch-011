@@ -64,11 +64,7 @@ export const Login = async (req, res, next) => {
       return next(error);
     }
 
-    if (!genAuthToken(existingUser, res)) {
-      const error = new Error("Login Error");
-      error.statusCode = 403;
-      return next(error);
-    }
+    genAuthToken(existingUser, res);
 
     res
       .status(200)

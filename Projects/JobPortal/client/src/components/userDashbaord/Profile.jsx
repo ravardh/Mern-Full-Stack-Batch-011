@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { RxLinkedinLogo, RxGithubLogo, RxInstagramLogo } from "react-icons/rx";
 import { RiTwitterXLine } from "react-icons/ri";
+import { FcCamera } from "react-icons/fc";
 import UpdateProfileModal from "./UpdateProfileModal";
 // Basic profile redesign (lightweight)
 const Profile = () => {
@@ -8,6 +9,14 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
 
   const [isUpdateModalOpen, setUpdateModalOpen] = useState(false);
+
+  const [preview, setPreview] = useState("");
+
+  const handlePreview = (e) => {
+    const file = e.target.files[0];
+    const fileURL = URL.createObjectURL(file);    
+    setPreview(fileURL)
+  };
 
   useEffect(() => {
     try {
@@ -68,17 +77,24 @@ const Profile = () => {
           <div className="bg-white border border-gray-200 shadow-sm rounded-2xl p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-6">
             <div className="flex-shrink-0">
               <div className="relative w-32 h-32">
-                {user.photo ? (
-                  <img
-                    src={user.photo}
-                    alt={user.fullName}
-                    className="w-32 h-32 object-cover rounded-2xl ring-4 ring-gray-100"
-                  />
-                ) : (
-                  <div className="w-32 h-32 rounded-2xl bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center text-4xl font-semibold text-gray-500">
-                    {user.fullName?.[0] || "U"}
-                  </div>
-                )}
+                <img
+                  src={preview || user.photo}
+                  alt={user.fullName}
+                  className="w-32 h-32 object-cover rounded-2xl ring-4 ring-gray-100"
+                />
+                <label
+                  htmlFor="dp"
+                  className="absolute bottom-0 right-0 border-l border-t border-[var(--background)] p-1 rounded-br-xl rounded-tl-xl text-lg bg-[var(--background)] hover:bg-[var(--tertiary)]"
+                >
+                  <FcCamera />
+                </label>
+                <input
+                  type="file"
+                  name="dp"
+                  id="dp"
+                  className="hidden"
+                  onChange={handlePreview}
+                />
               </div>
             </div>
 
