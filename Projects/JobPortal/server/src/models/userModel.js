@@ -21,7 +21,10 @@ const userSchema = mongoose.Schema(
     },
     photo: {
       type: String,
-      
+    },
+    photoId: {
+      type: String,
+      default: "N/A"
     },
     gender: {
       type: String,

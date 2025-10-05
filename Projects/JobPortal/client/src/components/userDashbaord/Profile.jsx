@@ -3,6 +3,8 @@ import { RxLinkedinLogo, RxGithubLogo, RxInstagramLogo } from "react-icons/rx";
 import { RiTwitterXLine } from "react-icons/ri";
 import { FcCamera } from "react-icons/fc";
 import UpdateProfileModal from "./UpdateProfileModal";
+import api from "../../config/api";
+import toast from "react-hot-toast";
 // Basic profile redesign (lightweight)
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -12,10 +14,30 @@ const Profile = () => {
 
   const [preview, setPreview] = useState("");
 
-  const handlePreview = (e) => {
+  const handlePreview = async (e) => {
     const file = e.target.files[0];
-    const fileURL = URL.createObjectURL(file);    
-    setPreview(fileURL)
+    const fileURL = URL.createObjectURL(file);
+    setPreview(fileURL);
+
+    try {
+      const formData = new FormData();
+      formData.append("profilePicture", file);
+      const res = await api.patch("/user/changePhoto", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      toast.success(res.data.message);
+      sessionStorage.setItem("userData", JSON.stringify(res.data.data));
+      setPreview("");
+    } catch (error) {
+      console.log(error);
+      toast.error(
+        `Error : ${error.response?.status} | ${error.response?.data?.message}`
+      );
+
+      setTimeout(() => {
+        setPreview("");
+      }, 5000);
+    }
   };
 
   useEffect(() => {
