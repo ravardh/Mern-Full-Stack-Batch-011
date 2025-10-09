@@ -4,9 +4,9 @@ import { genAuthToken } from "../utils/token.js";
 
 export const Register = async (req, res, next) => {
   try {
-    const { email, phone, fullName, password } = req.body;
+    const { email, phone, fullName, password, role } = req.body;
 
-    if (!fullName || !email || !password || !phone) {
+    if (!fullName || !email || !password || !phone || !role) {
       const error = new Error("All Fields Required");
       error.statusCode = 400;
       return next(error);
@@ -31,6 +31,7 @@ export const Register = async (req, res, next) => {
       phone,
       photo,
       password: hashedPassword,
+      role,
     });
 
     res
@@ -66,12 +67,10 @@ export const Login = async (req, res, next) => {
 
     genAuthToken(existingUser, res);
 
-    res
-      .status(200)
-      .json({
-        message: `Welcome Back ${existingUser.fullName}`,
-        data: existingUser,
-      });
+    res.status(200).json({
+      message: `Welcome Back ${existingUser.fullName}`,
+      data: existingUser,
+    });
   } catch (error) {
     next(error);
   }
@@ -79,7 +78,8 @@ export const Login = async (req, res, next) => {
 
 export const Logout = async (req, res, next) => {
   try {
-    res.status(200).json({ message: "Logout Successfull" });
+    res.clearCookie("LoginKey");
+    res.status(200).json({ message: "Logout Successful" });
   } catch (error) {
     next(error);
   }

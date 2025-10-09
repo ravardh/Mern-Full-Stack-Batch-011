@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { RiCloseCircleFill } from "react-icons/ri";
 import api from "../../config/api";
 import toast from "react-hot-toast";
+import { useAuth } from "../../context/AuthContext";
 
 const UpdateProfileModal = ({ isOpen, onClose }) => {
+  const { setUser } = useAuth();
   const [updateData, setUpdateData] = useState(
     JSON.parse(sessionStorage.getItem("userData")) || ""
   );
@@ -22,7 +24,8 @@ const UpdateProfileModal = ({ isOpen, onClose }) => {
       const res = await api.put("/user/update", updateData);
       toast.success(res.data.message);
       sessionStorage.setItem("userData", JSON.stringify(res.data.data));
-      onClose()
+      setUser(res.data.data);
+      onClose();
     } catch (error) {
       console.log(error);
       toast.error(

@@ -3,8 +3,10 @@ import working from "../assets/working.jpg";
 import api from "../config/api";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
+  const { setUser, setIsLogin, setIsrecruiter } = useAuth();
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({
     email: "",
@@ -27,11 +29,14 @@ const Login = () => {
       const res = await api.post("/auth/login", loginData);
       toast.success(res.data.message);
       sessionStorage.setItem("userData", JSON.stringify(res.data.data));
+      setIsLogin(true);
+      setUser(res.data.data);
+      setIsrecruiter(res.data.data.role === "recruiter");
       setLoginData({
         email: "",
         password: "",
       });
-      navigate("/userdashboard");
+      res.data.data.role === "recruiter"?navigate("/recruiterdashboard"):navigate("/userdashboard");
     } catch (error) {
       console.log(error);
       toast.error(
@@ -101,7 +106,7 @@ const Login = () => {
               type="submit"
               className="bg-blue-600 text-white py-2 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow"
             >
-              Login
+              {loading ? "Logging in ..." : "Login"}
             </button>
           </form>
         </div>

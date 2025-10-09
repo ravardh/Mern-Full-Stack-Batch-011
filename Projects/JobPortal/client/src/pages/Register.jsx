@@ -7,6 +7,7 @@ import api from "../config/api";
 const Register = () => {
   const navigate = useNavigate();
   const [registerData, setRegisterData] = useState({
+    role:"",
     fullName: "",
     email: "",
     phone: "",
@@ -24,6 +25,11 @@ const Register = () => {
   const Validate = () => {
     let isvalid = true;
     const err = {};
+
+    if(!registerData.role){
+      err.role = "Please select a Role";
+      isvalid = false;
+    }
     if (registerData.fullName.length < 3) {
       err.fullName = "Name should be of Atlest 3 Characters";
       isvalid = false;
@@ -40,7 +46,7 @@ const Register = () => {
       isvalid = false;
     }
     if (
-      !/^[A-Za-z\d._]+@gmail.com$/.test(registerData.email) ||
+      !/^[A-Za-z]+@[A-Za-z]+.[A-Za-z.]+$/.test(registerData.email) ||
       registerData.email.length < 10
     ) {
       err.email = "Please enter a Valid Email";
@@ -71,6 +77,8 @@ const Register = () => {
       toast.error("Please Solve the Errors");
       return;
     }
+
+   
     // setTimeout(() => {
     //   console.log(registerData);
     //   setRegisterData({
@@ -124,6 +132,23 @@ const Register = () => {
             className="flex flex-col gap-5 bg-blue-50 p-6 rounded-xl shadow-inner"
             onSubmit={handleSubmit}
           >
+            <div className="flex">
+              <label
+                className="block text-gray-700 font-semibold mb-1"
+                htmlFor="role"
+              >
+                Role
+              </label>
+              <div className="flex gap-3 items-center ml-4">
+                <input type="radio" name="role" id="applicant" value={"applicant"} onChange={handleChange} />
+                <label htmlFor="applicant">Applicant</label>
+                <input type="radio" name="role" id="recruiter" value={"recruiter"} onChange={handleChange} />
+                <label htmlFor="recruiter">Recruiter</label>
+              </div>
+              {error.role && (
+                <p className="text-red-500 text-sm mt-1">{error.role}</p>
+              )}
+            </div>
             <div className="flex">
               <label
                 className="block text-gray-700 font-semibold mb-1"
