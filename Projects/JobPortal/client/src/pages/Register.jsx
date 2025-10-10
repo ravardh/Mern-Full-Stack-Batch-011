@@ -46,7 +46,7 @@ const Register = () => {
       isvalid = false;
     }
     if (
-      !/^[A-Za-z]+@[A-Za-z]+.[A-Za-z.]+$/.test(registerData.email) ||
+      !/^[A-Za-z\d]+@[A-Za-z]+.[A-Za-z.]+$/.test(registerData.email) ||
       registerData.email.length < 10
     ) {
       err.email = "Please enter a Valid Email";

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
-  const { setUser, setIsLogin, setIsrecruiter } = useAuth();
+  const { setUser, setIsLogin, setIsRecruiter } = useAuth();
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({
     email: "",
@@ -31,12 +31,14 @@ const Login = () => {
       sessionStorage.setItem("userData", JSON.stringify(res.data.data));
       setIsLogin(true);
       setUser(res.data.data);
-      setIsrecruiter(res.data.data.role === "recruiter");
+      setIsRecruiter(res.data.data.role === "recruiter");
       setLoginData({
         email: "",
         password: "",
       });
-      res.data.data.role === "recruiter"?navigate("/recruiterdashboard"):navigate("/userdashboard");
+      res.data.data.role === "recruiter"
+        ? navigate("/recruiterdashboard")
+        : navigate("/applicantDashboard");
     } catch (error) {
       console.log(error);
       toast.error(

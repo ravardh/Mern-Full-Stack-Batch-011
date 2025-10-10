@@ -12,7 +12,7 @@ export const AuthProvider = (props) => {
 
   const [isLogin, setIsLogin] = useState(!!user);
 
-  const [isrecruiter, setIsrecruiter] = useState(user?.role === "recruiter");
+  const [isRecruiter, setIsRecruiter] = useState(user?.role === "recruiter");
 
   useEffect(() => {
     // if (user) {
@@ -24,7 +24,7 @@ export const AuthProvider = (props) => {
     setIsLogin(!!user);
   }, [user]);
 
-  const value = { user, setUser, isLogin, setIsLogin ,isrecruiter, setIsrecruiter};
+  const value = { user, setUser, isLogin, setIsLogin ,isRecruiter, setIsRecruiter};
 
   return (
     <AuthContext.Provider value={value}>{props.children}</AuthContext.Provider>

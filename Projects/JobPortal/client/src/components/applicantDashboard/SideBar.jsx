@@ -11,7 +11,7 @@ const navItems = [
   { value: "application", text: "Application", icons: <FcDocument /> },
 ];
 
-const SideBar = ({ active, setActive }) => {
+const Sidebar = ({ active, setActive }) => {
   const { setUser, setIsLogin } = useAuth();
   const navigate = useNavigate();
 
@@ -61,7 +61,7 @@ const SideBar = ({ active, setActive }) => {
         <div>
           <h1 className="text-lg border-b-2 border-[var(--background)] text-center text-[var(--text)] font-bold">
             {" "}
-            User Dashbaord
+            Applicant Dashbaord
           </h1>
 
           <div>
@@ -95,4 +95,4 @@ const SideBar = ({ active, setActive }) => {
   );
 };
 
-export default SideBar;
+export default Sidebar;
