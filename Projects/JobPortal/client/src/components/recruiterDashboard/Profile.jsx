@@ -6,7 +6,7 @@ import { FcCamera } from "react-icons/fc";
 import api from "../../config/api";
 import toast from "react-hot-toast";
 import { useAuth } from "../../context/AuthContext";
-
+import UpdateProfileModal from "./UpdateProfileModal";
 
 const Profile = () => {
   const { user, setUser } = useAuth();
@@ -83,13 +83,13 @@ const Profile = () => {
   const statItems = [
     { label: "Email", value: user.email || "N/A" },
     { label: "Phone", value: user.phone || "N/A" },
-    { label: "Gender", value: user.gender || "N/A" },
+    { label: "Gender", value: user.gender.toUpperCase() || "N/A" },
     { label: "DOB", value: user.dob || "N/A" },
   ];
 
   return (
     <>
-      <div className="h-full bg-gray-50 py-8 px-4">
+      <div className="bg-gray-50 py-8 px-4">
         <div className="max-w-5xl mx-auto space-y-8">
           {/* Header Card */}
           <div className="bg-white border border-gray-200 shadow-sm rounded-2xl p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-6">
@@ -269,6 +269,11 @@ const Profile = () => {
           </div>
         </div>
       </div>
+
+      <UpdateProfileModal
+        isOpen={isUpdateModalOpen}
+        onClose={() => setUpdateModalOpen(false)}
+      />
     </>
   );
 };

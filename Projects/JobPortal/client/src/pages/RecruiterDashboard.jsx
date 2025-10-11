@@ -13,7 +13,7 @@ const RecruiterDashbaord = () => {
         <div className="w-3/17 ">
           <Sidebar active={active} setActive={setActive} />
         </div>
-        <div className="w-14/17 ">
+        <div className="w-14/17 h-full overflow-y-auto">
           {active === "overview" && <Overview />}
           {active === "profile" && <Profile />}
           {active === "jobs" && <Jobs />}

@@ -17,7 +17,7 @@ const UpdateProfileModal = ({ isOpen, onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(updateData);
+    console.log(updateData);
     // onClose();
 
     try {
@@ -82,20 +82,6 @@ const UpdateProfileModal = ({ isOpen, onClose }) => {
             />
 
             <label
-              htmlFor="bio"
-              className="text-[var(--primary)] font-semibold"
-            >
-              Bio
-            </label>
-            <textarea
-              id="bio"
-              name="bio"
-              value={updateData.bio}
-              onChange={handleChange}
-              className="border p-2 rounded w-full"
-            ></textarea>
-
-            <label
               htmlFor="gender"
               className="text-[var(--primary)] font-semibold"
             >
@@ -130,65 +116,120 @@ const UpdateProfileModal = ({ isOpen, onClose }) => {
             />
 
             <label
-              htmlFor="exp"
+              htmlFor="companyName"
               className="text-[var(--primary)] font-semibold"
             >
-              Experience (in years)
+              Company Name
+            </label>
+            <input
+              type="text"
+              id="companyName"
+              name="companyName"
+              value={updateData.companyName}
+              onChange={handleChange}
+              className="border p-2 rounded w-full"
+            />
+
+            <label
+              htmlFor="companyDetail"
+              className="text-[var(--primary)] font-semibold"
+            >
+              Company Detail
+            </label>
+            <textarea
+              id="companyDetail"
+              name="companyDetail"
+              value={updateData.companyDetail}
+              onChange={handleChange}
+              className="border p-2 rounded w-full"
+            ></textarea>
+
+            <label
+              htmlFor="companySince"
+              className="text-[var(--primary)] font-semibold"
+            >
+              Company Since
             </label>
             <input
               type="number"
-              id="exp"
-              name="exp"
-              value={updateData.exp}
+              id="companySince"
+              name="companySince"
+              value={updateData.companySince}
               onChange={handleChange}
               min={0}
               className="border p-2 rounded w-full"
             />
 
             <label
-              htmlFor="qualification"
+              htmlFor="companyEmployees"
               className="text-[var(--primary)] font-semibold"
             >
-              Qualification
-            </label>
-            <select
-              name="qualification"
-              id="qualification"
-              value={updateData.qualification}
-              onChange={handleChange}
-              className="border p-2 rounded w-full"
-            >
-              <option value="N/A">Select Qualification</option>
-              <option value="bachelor">Bachelor's Degree</option>
-              <option value="master">Master's Degree</option>
-              <option value="phd">PhD</option>
-            </select>
-
-            <label
-              htmlFor="skills"
-              className="text-[var(--primary)] font-semibold"
-            >
-              Skills
+              Total Employees
             </label>
             <input
-              type="text"
-              id="skills"
-              name="skills"
-              value={updateData.skills}
+              type="number"
+              id="companyEmployees"
+              name="companyEmployees"
+              value={updateData.companyEmployees}
+              onChange={handleChange}
+              min={0}
+              className="border p-2 rounded w-full"
+            />
+
+            <label
+              htmlFor="companyEmail"
+              className="text-[var(--primary)] font-semibold"
+            >
+              Company Email
+            </label>
+            <input
+              type="email"
+              id="companyEmail"
+              name="companyEmail"
+              value={updateData.companyEmail}
               onChange={handleChange}
               className="border p-2 rounded w-full"
             />
 
             <label
-              htmlFor="address"
+              htmlFor="companyPhone"
               className="text-[var(--primary)] font-semibold"
             >
-              Address
+              Company Phone
+            </label>
+            <input
+              type="tel"
+              id="companyPhone"
+              name="companyPhone"
+              value={updateData.companyPhone}
+              onChange={handleChange}
+              className="border p-2 rounded w-full"
+            />
+
+            <label
+              htmlFor="companyAddress"
+              className="text-[var(--primary)] font-semibold"
+            >
+              Company Address
             </label>
             <textarea
-              id="address"
-              name="address"
-              value={updateData.address}
+              id="companyAddress"
+              name="companyAddress"
+              value={updateData.companyAddress}
+              onChange={handleChange}
+              className="border p-2 rounded w-full"
+            ></textarea>
+
+            <label
+              htmlFor="companyDescription"
+              className="text-[var(--primary)] font-semibold"
+            >
+              Company Description
+            </label>
+            <textarea
+              id="companyDescription"
+              name="companyDescription"
+              value={updateData.companyDescription}
               onChange={handleChange}
               className="border p-2 rounded w-full"
             ></textarea>
@@ -197,7 +238,7 @@ const UpdateProfileModal = ({ isOpen, onClose }) => {
               htmlFor="linkedin"
               className="text-[var(--primary)] font-semibold"
             >
-              LinkedIn Profile
+              Company LinkedIn
             </label>
             <input
               type="url"
@@ -208,24 +249,25 @@ const UpdateProfileModal = ({ isOpen, onClose }) => {
               className="border p-2 rounded w-full"
             />
             <label
-              htmlFor="github"
+              htmlFor="companyWebsite"
               className="text-[var(--primary)] font-semibold"
             >
-              GitHub Profile
+              Company Website
             </label>
             <input
               type="url"
-              id="github"
-              name="github"
-              value={updateData.github}
+              id="companyWebsite"
+              name="companyWebsite"
+              value={updateData.companyWebsite}
               onChange={handleChange}
               className="border p-2 rounded w-full"
             />
+
             <label
               htmlFor="twitter"
               className="text-[var(--primary)] font-semibold"
             >
-              Twitter Profile
+              Company Twitter
             </label>
             <input
               type="url"
@@ -239,7 +281,7 @@ const UpdateProfileModal = ({ isOpen, onClose }) => {
               htmlFor="insta"
               className="text-[var(--primary)] font-semibold"
             >
-              Instagram Profile
+              Company Instagram
             </label>
             <input
               type="url"
