@@ -7,4 +7,9 @@ router.post("/register", Register);
 router.post("/login", Login);
 router.get("/logout", Logout);
 
+// router.post("/sendOTP",SendOTP)
+// router.post("/verifyOTP",VerifyOTP)
+// router.post("/ForgetPassword",ForgetPassword)
+
+
 export default router;

@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import working from "../assets/working.jpg";
 import api from "../config/api";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import ForgetPassword from "./ForgetPassword";
 
 const Login = () => {
   const { setUser, setIsLogin, setIsRecruiter } = useAuth();
@@ -12,6 +13,8 @@ const Login = () => {
     email: "",
     password: "",
   });
+
+  const [forgetPasswordModal, setForgetPasswordModal] = useState(false);
 
   const [loading, setLoading] = useState(false);
 
@@ -104,6 +107,19 @@ const Login = () => {
                 required
               />
             </div>
+
+            <div className="text-right">
+              <button
+                className="text-blue-600 hover:underline"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setForgetPasswordModal(true);
+                }}
+              >
+                Forgot Password?
+              </button>
+            </div>
+
             <button
               type="submit"
               className="bg-blue-600 text-white py-2 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow"
@@ -113,6 +129,12 @@ const Login = () => {
           </form>
         </div>
       </div>
+
+      {/* Forget Password Modal */}
+      <ForgetPassword
+        isOpen={forgetPasswordModal}
+        onClose={() => setForgetPasswordModal(false)}
+      />
     </section>
   );
 };
