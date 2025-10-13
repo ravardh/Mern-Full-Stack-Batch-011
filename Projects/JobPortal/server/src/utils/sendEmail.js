@@ -20,7 +20,7 @@ const sendEmail = async (to, subject, message) => {
 
     const result = await Transporter.sendMail(EmailPacket);
 
-    console.log("Email sent Successsfully", result);
+    console.log("Email sent Successsfully", result.accepted);
     return true;
   } catch (error) {
     console.log("Error Sending Email", error);
@@ -28,7 +28,7 @@ const sendEmail = async (to, subject, message) => {
   }
 };
 
-export const sentForgetPasswordOTP = async (to, otp) => {
+export const sendForgetPasswordOTP = async (to, otp) => {
   try {
     const subject = "OTP for Password Reset";
 
@@ -62,7 +62,7 @@ export const sentForgetPasswordOTP = async (to, otp) => {
                         <!-- Body -->
                         <tr>
                         <td style="padding:12px 24px 0;color:#6b7280;font-size:15px;line-height:22px;">
-                            <p style="margin:0 0 12px 0;">Use the one-time passcode (OTP) below to verify your action. This code is valid for <strong style="color:#111827;">{{EXPIRY_MINUTES}} minutes</strong>.</p>
+                            <p style="margin:0 0 12px 0;">Use the one-time passcode (OTP) below to verify your action. This code is valid for <strong style="color:#111827;">5 minutes</strong>.</p>
                         </td>
                         </tr>
 
