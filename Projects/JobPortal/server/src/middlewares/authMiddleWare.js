@@ -30,3 +30,13 @@ export const Protect = async (req, res, next) => {
     next(error);
   }
 };
+
+
+export const isRecruiter = (req, res, next) => {
+  if (req.user.role !== "recruiter") {
+    const error = new Error("Access Denied, Recruiter Only Resource");
+    error.statusCode = 403;
+    return next(error);
+  }
+  next();
+};

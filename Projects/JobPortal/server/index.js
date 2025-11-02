@@ -4,6 +4,8 @@ import cookieParser from "cookie-parser";
 import connectDB from "./src/config/db.js";
 import AuthRouter from "./src/routers/authRoutes.js";
 import UserRouter from "./src/routers/userRoutes.js";
+import RecruiterRouter from "./src/routers/recruiterRoutes.js";
+import PublicRouter from "./src/routers/publicRoutes.js";
 import morgan from "morgan";
 import cloudinary from "./src/config/cloudinary.js";
 
@@ -16,6 +18,8 @@ app.use(morgan("dev"));
 
 app.use("/auth", AuthRouter);
 app.use("/user", UserRouter);
+app.use("/recruiter", RecruiterRouter);
+app.use("/public", PublicRouter);
 
 app.get("/", (req, res) => {
   res.status(200).json({ message: "Welcome to Job Portal API" });
