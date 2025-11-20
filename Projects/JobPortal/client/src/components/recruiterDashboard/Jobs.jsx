@@ -24,8 +24,8 @@ const Jobs = () => {
 
   React.useEffect(() => {
     // Fetch jobs from API
-    if (!isAddJobModalOpen) fetchJobs();
-  }, [isAddJobModalOpen]);
+    if (!isAddJobModalOpen && !isViewJobModalOpen) fetchJobs();
+  }, [isAddJobModalOpen , isViewJobModalOpen]);
 
   return (
     <>

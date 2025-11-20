@@ -2,6 +2,7 @@ import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import toast from "react-hot-toast";
+import api from "../config/api";
 
 const JobDetails = () => {
   const { isLogin, isRecruiter } = useAuth();
@@ -9,7 +10,7 @@ const JobDetails = () => {
   const navigate = useNavigate();
   const { selectedJob } = locationState;
 
-  const handleApplyNow = () => {
+  const handleApplyNow = async () => {
     // Handle apply now action
 
     if (!isLogin) {
@@ -20,6 +21,16 @@ const JobDetails = () => {
     if (isLogin && isRecruiter) {
       toast.error("Recruiters cannot apply for jobs.");
       return;
+    }
+
+    try {
+      const res = await api.post("/user/apply-job", { jobID: selectedJob._id });
+      toast.success(res.data.message);
+    } catch (error) {
+      console.log(error);
+      toast.error(
+        `Error : ${error.response?.status} | ${error.response?.data?.message}`
+      );
     }
 
     toast.success("Application submitted successfully!");
@@ -75,6 +86,7 @@ const JobDetails = () => {
     ? new Date(selectedJob.lastDateToApply).toLocaleDateString()
     : "-";
 
+  console.log("Selected Job Details:", selectedJob);
   return (
     <div className="min-h-screen bg-gray-50 py-10 px-4">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -198,6 +210,14 @@ const JobDetails = () => {
 
         {/* Right sidebar */}
         <aside className="space-y-6">
+          <div>
+            <button
+              onClick={() => navigate(-1)}
+              className="w-full inline-flex items-center justify-center px-4 py-2 bg-gray-200 text-gray-800 rounded-lg text-sm hover:bg-gray-300"
+            >
+              Back
+            </button>
+          </div>
           {/* Last Apply - highlighted */}
           <div className="bg-white rounded-2xl p-5 shadow-sm border border-red-100">
             <div className="flex items-center justify-between">

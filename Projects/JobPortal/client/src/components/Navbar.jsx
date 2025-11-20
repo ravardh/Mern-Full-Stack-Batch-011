@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { TiThMenu } from "react-icons/ti";
 import { useAuth } from "../context/AuthContext";
 
@@ -7,6 +7,14 @@ const Navbar = () => {
   const { user, isLogin, isrecruiter } = useAuth();
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const location = useLocation().pathname;
+  console.log(location);
+
+  const isActive = (path) => {
+    return location === path ? "text-violet-300 border-b-2" : "";
+  }
+  
 
   // const [user, setUser] = useState(
   //   JSON.parse(sessionStorage.getItem("userData")) || null
@@ -28,15 +36,15 @@ const Navbar = () => {
       <div className="bg-blue-500 p-3 flex justify-between text-white sticky top-0 z-100">
         <h1 className="text-2xl font-bold">Job Portal</h1>
         <div className="space-x-5 hidden md:flex items-center">
-          <Link to={"/about"} className="hover:text-amber-300 hover:border-b-2">
+          <Link to={"/about"} className={`hover:text-amber-300 hover:border-b-2 ${isActive("/about")}`}>
             About
           </Link>
-          <Link to={"/job"} className="hover:text-amber-300  hover:border-b-2">
+          <Link to={"/job"} className={`hover:text-amber-300  hover:border-b-2 ${isActive("/job")}`}>
             Jobs
           </Link>
           <Link
             to={"/contact"}
-            className="hover:text-amber-300  hover:border-b-2"
+            className={`hover:text-amber-300  hover:border-b-2 ${isActive("/contact")}`}
           >
             Contact
           </Link>
@@ -47,7 +55,7 @@ const Navbar = () => {
                 onClick={() =>
                   user.role === "recruiter"
                     ? navigate("/recruiterDashboard")
-                    : navigate("/userDashboard")
+                    : navigate("/applicantDashboard")
                 }
               >
                 <h1 className="group-hover:text-amber-300  group-hover:border-b-2">

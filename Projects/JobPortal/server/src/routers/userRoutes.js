@@ -1,5 +1,5 @@
 import express from "express";
-import { UpdateProfile, ChangePhoto } from "../controllers/userController.js";
+import { UpdateProfile, ChangePhoto, ApplyJob,AppliedJobs } from "../controllers/userController.js";
 import { Protect } from "../middlewares/authMiddleWare.js";
 import multer from "multer";
 
@@ -13,5 +13,9 @@ router.patch(
   upload.single("profilePicture"),
   ChangePhoto
 );
+
+router.post("/apply-job", Protect, ApplyJob);
+
+router.get("/applied-jobs", Protect, AppliedJobs);
 
 export default router;

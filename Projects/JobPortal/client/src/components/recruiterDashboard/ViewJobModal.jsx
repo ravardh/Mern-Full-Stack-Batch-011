@@ -1,29 +1,46 @@
 import React from "react";
 import { FaEdit, FaSave } from "react-icons/fa";
+import api from "../../config/api";
+import toast from "react-hot-toast";
 
 const ViewJobModal = ({ isOpen, onClose, job }) => {
   if (!isOpen) return null;
 
   const [jobDetails, setJobDetails] = React.useState(job || {});
+  const [isReadOnly, setIsReadOnly] = React.useState(true);
 
   React.useEffect(() => {
     setJobDetails(job || {});
   }, [job]);
 
-  const handleUpdateJob = () => {
+  const handleUpdateJob = async () => {
     // TODO: call API to persist jobDetails or pass to parent via prop
-    console.log("Job details updated:", jobDetails);
+
+    try {
+      const res = await api.post("/recruiter/update-job", jobDetails);
+      toast.success(res.data.message);
+      onClose();
+    } catch (error) {
+      console.log(error);
+      toast.error(
+        `Error : ${error.response?.status} | ${error.response?.data?.message}`
+      );
+    }
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    let { name, value } = e.target;
+    if(name ==="lastDateToApply"){
+      value = new Date(value).toISOString();
+      console.log("Date changed:", value);
+    }
     setJobDetails((prevDetails) => ({
       ...prevDetails,
       [name]: value,
     }));
   };
 
-  const [isReadOnly, setIsReadOnly] = React.useState(true);
+  // console.log("Job Details in Modal:", jobDetails);
   return (
     <>
       <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">

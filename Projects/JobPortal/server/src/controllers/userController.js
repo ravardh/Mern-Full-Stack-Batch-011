@@ -1,4 +1,6 @@
 import cloudinary from "../config/cloudinary.js";
+import Application from "../models/applicationModel.js";
+import Job from "../models/jobModel.js";
 import User from "../models/userModel.js";
 
 export const UpdateProfile = async (req, res, next) => {
@@ -162,6 +164,63 @@ export const ChangePhoto = async (req, res, next) => {
     res.status(200).json({
       message: "Profile picture updated successfully",
       data: updatedUser,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const ApplyJob = async (req, res, next) => {
+  try {
+    const { jobID } = req.body;
+    const currentUser = req.user;
+
+    const alreadyApplied = await Application.findOne({
+      userID: currentUser._id,
+      jobID: jobID,
+    });
+    if (alreadyApplied) {
+      const error = new Error("You have already applied to this job");
+      error.statusCode = 400;
+      return next(error);
+    }
+
+    const job = await Job.findById(jobID);
+    if (!job) {
+      const error = new Error("Job not found");
+      error.statusCode = 404;
+      return next(error);
+    }
+
+    const newApplication = await Application.create({
+      recruiterID: job.recruiterID,
+      userID: currentUser._id,
+      jobID: jobID,
+      status: "Applied",
+      appliedAt: Date.now(),
+    });
+
+    res.status(201).json({
+      message: "Application submitted successfully",
+      data: newApplication,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const AppliedJobs = async (req, res, next) => {
+  try {
+    const currentUser = req.user;
+
+    const applications = await Application.find({ userID: currentUser._id })
+      .populate("jobID")
+      .populate("recruiterID")
+      .populate("userID");
+
+    res.status(200).json({
+      message: "Applied jobs retrieved successfully",
+      data: applications,
     });
   } catch (error) {
     next(error);
